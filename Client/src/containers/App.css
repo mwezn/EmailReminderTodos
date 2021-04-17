@@ -1,0 +1,318 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+    background-color: #5e82e6;
+    color: rgb(245,222,179);
+    
+  }
+
+.loginBtn {
+  margin-top: 20px;
+  border: 0.1px solid rgba(0,0,0,1);
+  font-family: monospace;
+  
+}
+
+.loginBtn:hover {
+  border: 0.3px solid rgba(0,255,255,1);
+  background-color: white;
+  opacity: 0.5
+}
+
+.regBtn {
+  margin-top: 20px;
+  margin-top: 20px;
+  border: 0.1px solid rgba(0,0,0,1);
+  font-family: monospace;
+}
+.regBtn:hover {
+  border: 0.3px solid rgba(0,255,255,1);
+  background-color: white;
+  opacity: 0.5;
+}
+ 
+ #readyToPlan{
+    overflow: hidden;
+    margin-left:700px;
+    border: 2px solid black;
+    width:40%;
+    text-align: center;
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+  }
+.CssFlex {
+  display:flex;
+  flex-direction: row;
+}
+ .completedList {
+   box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+   width: 800px;
+}
+ .completedList:hover {
+   transform: scale(1.1)
+ }
+
+  #overdue {
+    margin-left:0px;
+    margin-top:0px;
+    border: 2px solid black;
+    width: 40%;
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    text-align: center;
+  }
+  #overdue:hover {
+    transform: scale(1.01);
+  }
+  #readyToPlan:hover {
+    transform: scale(1.01);
+  }
+  
+  textarea {
+    width: 500px;
+    height:150px;
+    font-size: 30px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    
+  }
+  textarea:hover {
+    border-radius:15px;
+  }
+  #card {
+    border: 3px solid #ccc;
+    border-radius: 50px;
+  }
+  #createList {
+    color: green;
+    font-size: 35px;
+    font-family: monospace;
+    margin-bottom: 10px;
+   
+   }
+  #clearList {
+    color:red;
+    font-size: 35px;
+    font-family: monospace;
+  }
+  #box {
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 200px;
+    margin-right: 200px;
+    
+    
+  }
+  #box:hover {
+    transform: scale(1.1);
+  
+  }
+  .emailRegistered {
+    color: green;
+    background-color: #12eeff;
+    border: 1px solid seagreen;
+    font-family: monospace;
+    opacity: 60%
+  }
+  .emailTaken {
+    color: red;
+    background-color: rosybrown;
+    border: 2px solid red;
+    font-family: monospace;
+    opacity: 60%
+  }
+  h1 {
+    font-size:50px;
+    text-align: center;
+   }
+  .timeSelect{
+    display: inline;
+    position: relative;
+    left:400px;
+  }
+  
+  .calendar1{
+    display:block;
+  }
+  
+  .calendar2{
+    display: none;
+  }
+
+  ul li {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #aaafff;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    position: relative; /* keeps inner(span) inside li*/
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    
+  }
+
+  ul li:hover {
+    transform: scale(1.1);
+  }
+  
+  
+  .NavBar > li {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #aaafff;
+    box-shadow: 1px 1px 1px black;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: inline;
+    font-family: monospace;
+    position: relative; /* keeps inner(span) inside li*/
+    
+  }
+  
+  .NavBar > li:hover {
+    opacity: 0.3;
+  }
+  
+  .btn1{
+    align-items: center;
+    background: #aaafff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 250, 0.8);
+    display: block;
+    font-size: 50px;
+    justify-content: space-between;
+    padding: 3px 10px;
+    margin: 10px 25px 0px 0px;
+    border-radius: 50px;
+  }
+  
+  .btn1:hover {
+    cursor:pointer;
+    transform: scale(1.01);
+    background-color: rgb(245,222,179);
+    
+  }
+  .close {
+    cursor:pointer;
+    position: relative;
+    top:50%;
+    right: 0%;
+    padding: 12px 16px;
+    transform: translate(0%, -50%);
+    opacity: 0.4;
+    color: red;
+  }
+  .close:hover {
+    opacity:1;
+    
+  }
+  .close .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /*top: -5px;
+    right: 105%;*/
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .close:hover .tooltiptext {
+    visibility: visible;
+  }
+  .done {
+    cursor:pointer;
+  }
+
+  .done .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /*top: -5px;
+    right: 105%;*/
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .done:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .close2 {display: none}
+  
+  .clock{
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    padding: 0px 16px;
+    opacity: 0.4;
+  }
+  .clock:hover{
+    opacity: 1;
+    border: 1px solid black;
+  }
+  /* The folowing is CSS from Login.css 
+  If you import both css files Login & App at the same time..it causes slight errors
+  by overriding the main App.css file???*/
+
+  .clock2 {
+    display: none;
+  }
+
+  .greenTick1 {
+    display: inline;
+    position: absolute;
+    right:7%;
+  }
+  .greenTick2 {
+    display: none;
+  }
+  .submitted {
+    display: none;
+  }
+  .notsubmitted {
+    display: inline;
+  }
+  
+
+  #loginCard {
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    border: 1px solid #ccc;
+    margin-left: 10%;
+    width: 75%;
+    margin-top: 20px;
+  }
+  #loginCardItems{
+    position: relative;
+    margin-top: 50px;
+    margin-left: 30%;
+  }
+  
+  #loginCardItems input{
+    height: 35px;
+    width: 500px;
+    font-size: 25px;
+  }
+  
+  #loginCardItems button {
+    font-size: 40px;
+    margin-left: 150px;
+  }
+  
+  label {
+    font-size: 30px;
+    text-align: center;
+  }
+
