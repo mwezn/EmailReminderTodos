@@ -17,7 +17,7 @@ function Complete(props){
           body: JSON.stringify({ data: newObj, Item: item })
         }
     
-        fetch('http://localhost:3001/removeDone', requestOptions)
+        fetch('/removeDone', requestOptions)
           .then(res => { return res.json() })
           .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
       }

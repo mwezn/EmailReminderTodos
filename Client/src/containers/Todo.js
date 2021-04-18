@@ -78,7 +78,7 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: props.user })
     }
 
-    fetch('http://localhost:8080/updateCentralState', requestOptions)
+    fetch('/updateCentralState', requestOptions)
       .then(res => { return res.json() })
       .then(resJSON => dispatch({ type: "UPDATECENTRALSTATE", payload: resJSON }))
   }
@@ -138,7 +138,7 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: newObj, Item: item })
     }
 
-    fetch('http://localhost:8080/removeOverdue', requestOptions)
+    fetch('/removeOverdue', requestOptions)
       .then(res => { return res.json() })
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
   }
@@ -156,7 +156,7 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: newObj, Item: item })
     }
 
-    fetch('http://localhost:8080/removeTodo', requestOptions)
+    fetch('/removeTodo', requestOptions)
       .then(res => { return res.json() })
       //.then(resJSON=>console.log(resJSON))
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
@@ -174,7 +174,7 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: newObj, Item: item })
     }
 
-    fetch('http://localhost:8080/dueDone', requestOptions)
+    fetch('/dueDone', requestOptions)
       .then(res => { return res.json() })
       //.then(resJSON=>console.log(resJSON))
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
@@ -191,7 +191,7 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: newObj, Item: item })
     }
 
-    fetch('http://localhost:8080/overdueDone', requestOptions)
+    fetch('/overdueDone', requestOptions)
       .then(res => { return res.json() })
       //.then(resJSON=>console.log(resJSON))
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
@@ -221,7 +221,7 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: newObj })
     }
 
-    fetch('http://localhost:8080/addTodo', requestOptions)
+    fetch('/addTodo', requestOptions)
       .then(res => { return res.json() })
       //.then(resJSON=>console.log(resJSON))
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))

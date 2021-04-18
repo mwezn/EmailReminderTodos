@@ -21,7 +21,7 @@ export default function Login() {
       body: JSON.stringify({ title: 'React POST Request Example',data: loginCredentials})
   };
   
-  fetch('/login',requestOptions)
+  fetch('/login',requestOptions) //<--This needs changing to /login
      .then(res => {
        if (res.status===401) {
         const newObj={passCorrect: false}

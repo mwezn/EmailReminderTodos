@@ -20,7 +20,7 @@ export default function Register() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: 'React POST Request Example',data: RegCredentials})
   };
-  fetch('http://localhost:8080/register', requestOptions)
+  fetch('/register', requestOptions) //<----THIS NEEDS CHANGING TO /register
       .then(res => {
         if (res.status===400) {
           const newObj={emailAuth: false, serverResponse: res.text()}
