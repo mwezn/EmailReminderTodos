@@ -21,7 +21,7 @@ export default function Login() {
       body: JSON.stringify({ title: 'React POST Request Example',data: loginCredentials})
   };
   
-  fetch('http://localhost:8080/login',requestOptions)
+  fetch('https://localhost:8080/login',requestOptions)
      .then(res => {
        if (res.status===401) {
         const newObj={passCorrect: false}
