@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.6.0",
     "express": "^4.17.1",
     "react": "^17.0.1",
+    "react-app-polyfill": "^2.0.0",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -34,6 +35,8 @@
       "not op_mini all"
     ],
     "development": [
+      "ie 9",
+      "ie 11",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
