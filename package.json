@@ -1,24 +1,28 @@
 {
-  "name": "mongobackend",
+  "name": "todos",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This is my first fullstack MERN app. It links together two other repos on here MongoBackend & ToDoList.  Its currently live & hosted on an AWS Ubuntu 18.04 EC2 (Elastic cloud compute) server at:",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd Client && npm install --only=dev && npm install && npm run build",
     "start": "node server.js"
   },
-  "engines": {
-    "node": "10.22.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwezn/EmailReminderTodos.git"
   },
-  "author": "Mike Nelson",
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwezn/EmailReminderTodos/issues"
+  },
+  "homepage": "https://github.com/mwezn/EmailReminderTodos#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.6",
     "node-cron": "^3.0.0",
