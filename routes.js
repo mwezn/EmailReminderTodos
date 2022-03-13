@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: `${process.env.EMAIL}`,
-    pass: `${process.env.EMAIL_PASS}`
+    pass: `${process.env.EMAILPASS}`
   },
    tls: {
           rejectUnauthorized: false
@@ -113,6 +113,7 @@ router.post('/login', async (req, res) =>{
 
     const email =req.body.data.email
     const password =req.body.data.password
+    console.log(email,password)
     try{
         const checkuser= await User.findOne({ "email": email })
         console.log(checkuser);

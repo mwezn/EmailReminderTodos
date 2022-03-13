@@ -35,7 +35,7 @@ db.once('open', () => {
     cronUpdate.performUpdate()
     
     app.listen(process.env.PORT|| 8080,()=>{
-        console.log("The API is running on Port:" + process.env.PORT)
+        console.log("The API is running on Port:" + process.env.PORT || 8080)
     })
     
 
