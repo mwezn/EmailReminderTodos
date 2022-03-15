@@ -22,14 +22,14 @@ var transporter = nodemailer.createTransport({
 });
 
 
-router.post('/updateCentralState', async (req, res, done)=>{
+router.post('/updateCentralState', async (req, res)=>{
   let id=req.body.data['_id']
   const userid=await User.findOne({_id: id});
   //console.log(userid)
   res.json(userid)
 })
 
-
+//The following requires .clone() for mongoose v6
 /*router.post('/updateCentralState', async (req, res, done)=>{
   let id=req.body.data['_id']
   await User.findOne({_id: id}, (err,person)=>{
