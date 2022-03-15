@@ -24,12 +24,20 @@ var transporter = nodemailer.createTransport({
 
 router.post('/updateCentralState', async (req, res, done)=>{
   let id=req.body.data['_id']
+  const userid=await User.findOne({_id: id});
+  //console.log(userid)
+  res.json(userid)
+})
+
+
+/*router.post('/updateCentralState', async (req, res, done)=>{
+  let id=req.body.data['_id']
   await User.findOne({_id: id}, (err,person)=>{
     if (err) console.log(err)
     res.json(person)
     done(null, person)
   })
-})
+})*/
 
 router.post('/removeDone', async (req, res, done)=>{
   console.log(req.body)
