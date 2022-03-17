@@ -14,17 +14,18 @@ var transporter = nodemailer.createTransport({
     clientId: process.env.CLIENT_ID,
     clientSecret:process.env.CLIENT_SECRET,
     refreshToken: process.env.REFRESH_TOKEN
+
   },
    tls: {
           rejectUnauthorized: false
       }
 });
 
-let data= JSON.stringify({Tesing: 'Testing my OAuth authentication'})
+let data= JSON.stringify({Testing: 'Testing my OAuth authentication'})
 
 var mainOptions={
-    from: `${sender}`,
-    to: `wezleyg78@gmail.com`,
+    from: sender,
+    to: sender,
     subject: 'Succesfully Registered ',
     html: data,
 }
