@@ -13,8 +13,12 @@ let sender= process.env.EMAIL
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: `${process.env.EMAIL}`,
-    pass: `${process.env.EMAILPASS}`
+    type: 'OAuth2',
+    user: process.env.EMAIL,
+    pass: process.env.EMAILPASS,
+    clientId: process.env.CLIENT_ID,
+    clientSecret:process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN
   },
    tls: {
           rejectUnauthorized: false
