@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const routes = require('./routes') // includes the routes.js file
 const cors = require('cors') // includes cors module
 const User = require('./models/Emailschema')
-var nodemailer=require('nodemailer')
 const path=require('path')
 const cronUpdate= require('./cron')
 

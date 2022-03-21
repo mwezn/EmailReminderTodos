@@ -10,25 +10,30 @@ const ejs= require('ejs')
 
 let sender= process.env.EMAIL
 var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAILPASS
-    },
-     tls: {
-            rejectUnauthorized: false
-        }
-  });
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.EMAIL,
+    pass: process.env.EMAILPASS,
+    clientId: process.env.CLIENT_ID,
+    clientSecret:process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN
+  },
+   tls: {
+          rejectUnauthorized: false
+      }
+});
+
 
  
 
 // The following function separates users scheduled tasks from the overdue ones!
 function performUpdate(){
   cron.schedule('*/30 * * * * *', ()=>{
-    console.log("performing Update")
     let t=new Date();
     let T=t.toISOString();
     let GMT= t.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit',hour12:false})
+    console.log(`performing Update on ${t} at ISO:${T} & LocaleTimeString: ${GMT}` )
     User.find({}, (err,d)=>{
       if (err) console.log(err)
       let t=d.length;
