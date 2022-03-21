@@ -19,8 +19,12 @@ app.use(express.static(path.join(__dirname, "Client", "build")))
 mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
-app.get("*", (req, res) => {
+/*app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "Client", "build", "index.html"));
+});*/
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "Client", "public", "index.html"));
 });
 
 

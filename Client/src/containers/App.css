@@ -1,7 +1,7 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: #5e82e6;
+    background-color: #23d14f; /*Added this to help me show built(npm run build) vs public(npm run start) */
     color: rgb(245,222,179);
     
   }
