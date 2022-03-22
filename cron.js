@@ -65,12 +65,21 @@ function performUpdate(){
 
 
         }
-        User.findByIdAndUpdate(Id,{$pull:{log:{$in: res}}, $addToSet:{overdue: res}},{new: true}, (err,user)=>{
+        User.findByIdAndUpdate(Id,{$pull:{log:{$in: res}}, $addToSet:{overdue:{ $each: res}}},{new: true}, (err,user)=>{
+          //NEED TO ADD $each for this?!?
+          /*const update = {
+     $pull: {
+      log: {
+        $in: [{ "date" : "2022-03-21", "time" : "19:06", "todo" : "hello" }]
+       }
+      },
+      $addToSet:{overdue:{ $each: [{ "date" : "2022-03-21", "time" : "19:06", "todo" : "hello" }]}}
+    }*/
           if(err) console.log(err)
           
           
         } )
-        User.findByIdAndUpdate(Id,{$pull:{log:{$in: pastTime}}, $addToSet:{overdue: pastTime}},{new: true}, (err,user)=>{
+        User.findByIdAndUpdate(Id,{$pull:{log:{$in: pastTime}}, $addToSet:{overdue:{$each: pastTime}}},{new: true}, (err,user)=>{
           if(err) console.log(err)
           
           

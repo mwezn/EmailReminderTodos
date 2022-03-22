@@ -11,17 +11,17 @@ const cronUpdate= require('./cron')
 app.use(cors()) // We're telling express to use CORS
 app.use(express.json()) // we need to tell server to use json as well
 app.use(routes)
-app.use(express.static(path.join(__dirname, "Client", "build")))
+//app.use(express.static(path.join(__dirname, "Client", "build")))
 
-
+/*app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "Client", "build", "index.html"));
+});*/
 
 
 mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
-/*app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "Client", "build", "index.html"));
-});*/
+app.use(express.static(path.join(__dirname, "Client", "public")))
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "Client", "public", "index.html"));

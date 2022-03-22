@@ -200,7 +200,7 @@ function MyToDoComp(props) {
 
   function submitToServer(e, index) {
     let obj = JSON.parse(e.target.value)
-    console.log(e, index)
+    
     AppState.greentick.splice(index, 1, !AppState.greentick[index])
     setParams(old => {
       console.log(old, obj)
@@ -213,6 +213,7 @@ function MyToDoComp(props) {
 
     let newObj = { ...props.user };
     newObj.log.push(obj)
+    console.log(newObj)
 
 
     const requestOptions = {
@@ -222,11 +223,14 @@ function MyToDoComp(props) {
       body: JSON.stringify({ data: newObj })
     }
 
+
     fetch('/addTodo', requestOptions)
       .then(res => { return res.json() })
-      .then(resJSON=>console.log(resJSON))
-      //.then(resJSON=>console.log(resJSON))
-      //.then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
+      .then(resJSON=>{
+        console.log(resJSON)
+        return resJSON
+      })
+      .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
 
   }
 

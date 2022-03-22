@@ -33,16 +33,6 @@ router.post('/updateCentralState', async (req, res)=>{
   res.json(userid)
 })
 
-//The following requires .clone() for mongoose v6
-/*router.post('/updateCentralState', async (req, res, done)=>{
-  let id=req.body.data['_id']
-  await User.findOne({_id: id}, (err,person)=>{
-    if (err) console.log(err)
-    res.json(person)
-    done(null, person)
-  })
-})*/
-
 router.post('/removeDone', async (req, res, done)=>{
   console.log(req.body)
   let update=req.body.Item;
@@ -105,8 +95,23 @@ router.post('/removeOverdue', async (req, res, done)=>{
 })
 
 
-
 router.post('/addTodo', async (req,res,done)=>{
+  console.log("LOG"+ req.body.data.log)
+  let query={_id: req.body.data["_id"]}
+  let update= { $addToSet: { log: {$each: req.body.data.log} }}
+  User.findOneAndUpdate(query,update, {new:true}, (err,person)=>{
+    if(err) console.log(err)
+    console.log(person)
+    res.json(person)
+    done(null, person)
+    
+  })
+
+})
+
+
+
+/*router.post('/addTodo', async (req,res,done)=>{
   console.log("LOG"+ req.body.data.log)
   let query={_id: req.body.data["_id"]}
   let update= { $addToSet: { log: req.body.data.log }}
@@ -117,8 +122,7 @@ router.post('/addTodo', async (req,res,done)=>{
     done(null, person)
     
   })
-
-})
+})*/
 
 
 router.post('/login', async (req, res) =>{
