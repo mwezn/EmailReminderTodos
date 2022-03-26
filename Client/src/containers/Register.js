@@ -62,14 +62,14 @@ export default function Register() {
   return (
     <div>
     <div id="loginCard">
-    <form id="loginCardItems" onSubmit={(e)=>handleSubmit(e)}>
+    <form id="loginCardItems" className="form-control" onSubmit={(e)=>handleSubmit(e)}>
         <label for="email">Email:</label><br></br>
         <input type="email" name="email" placeholder="Enter Email" onChange={(e)=>enterEmail(e)} required></input><br></br>
         <label for="email">First Name:</label><br></br>
         <input type="text" name="email" placeholder="Enter your name" onChange={(e)=>enterUser(e)} required></input><br></br>
         <label for="pass">Password:</label><br></br>
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)} required></input><br></br>
-        <button>Register</button>
+        <button className="btn btn-primary">Register</button>
     </form> 
   <div><h1>{RegCredentials.emailAuth===false?<p className="emailTaken">Email already taken</p>:RegCredentials.emailAuth===true?<p className="emailRegistered">Succesfully registered. Check
     your email!</p>:null}</h1></div>

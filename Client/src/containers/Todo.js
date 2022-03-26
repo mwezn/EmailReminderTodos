@@ -1,6 +1,5 @@
 //This is the functional component definition 
 //Its needed in order to use react hooks 
-import './App.css';
 import React from 'react';
 
 import { AuthContext } from '../App'
@@ -68,26 +67,6 @@ function Calendar(props) {
 function MyToDoComp(props) {
   const [AppState, setParams] = React.useState({ userInput: "", toDoList: [], serverList: [], vis: [], greentick: [] });
   const { dispatch } = React.useContext(AuthContext);
-
-
-  function updateCentralState() {
-    const requestOptions = {
-      method: 'POST',
-      //mode: 'cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ data: props.user })
-    }
-
-    fetch('/updateCentralState', requestOptions)
-      .then(res => { return res.json() })
-      .then(resJSON => dispatch({ type: "UPDATECENTRALSTATE", payload: resJSON }))
-  }
-
-  /*React.useEffect(() => {
-    setInterval(() => {
-      updateCentralState();
-    }, 30000)
-  })*/
 
 
   function clear() {
