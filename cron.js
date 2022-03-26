@@ -65,22 +65,36 @@ function performUpdate(){
 
 
         }
-        User.findByIdAndUpdate(Id,{$pull:{log:{$in: res}}, $addToSet:{overdue:{ $each: res}}},{new: true}, (err,user)=>{
-          //NEED TO ADD $each for this?!?
-          /*const update = {
-     $pull: {
-      log: {
-        $in: [{ "date" : "2022-03-21", "time" : "19:06", "todo" : "hello" }]
-       }
-      },
-      $addToSet:{overdue:{ $each: [{ "date" : "2022-03-21", "time" : "19:06", "todo" : "hello" }]}}
-    }*/
+        const update = {
+          //$pullAll: {overdue:[[]]},
+          $pull: {
+           log: {
+             $in: res
+                }
+                },
+           $addToSet:{overdue:{ $each: res}}
+          }
+          const update2 ={
+            //$pullAll: {overdue:[[]]},
+          $pull: {
+           log: {
+             $in: pastTime
+                }
+                },
+           $addToSet:{overdue:{ $each: pastTime}}
+
+          }
+        
+        User.findOneAndUpdate(Id,update,{new: true}, (err,user)=>{
+          
           if(err) console.log(err)
+          console.log(user)
           
           
         } )
-        User.findByIdAndUpdate(Id,{$pull:{log:{$in: pastTime}}, $addToSet:{overdue:{$each: pastTime}}},{new: true}, (err,user)=>{
+        User.findOneAndUpdate(Id,update2,{new: true}, (err,user)=>{
           if(err) console.log(err)
+          console.log(user)
           
           
         } )
