@@ -1,0 +1,15 @@
+.listitems{
+    background-color: rgb(70, 224, 224,0.3);
+
+}
+.listitems:hover {
+    background-color: rgb(70, 224, 224,1);
+}
+.overdueitems {
+    background-color: rgb(221, 150, 57, 0.3);
+}
+.overdueitems:hover {
+    background-color: rgb(221, 150, 57, 1);
+    transform: scale(0.8);
+
+}

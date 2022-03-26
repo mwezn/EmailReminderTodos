@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { AuthContext } from '../App'
+import './todo.css'
 
 
 
@@ -216,20 +217,21 @@ function MyToDoComp(props) {
 
   //console.log(props.user)
   const items = !inputValidator(AppState.toDoList) && AppState.toDoList.length === 0 ? <h1>Enter your tasks separated by commas</h1> : AppState.toDoList.map((d, index) => d === "" ? null : <div key={index}><li className="btn1" key={index}>{d}<span onClick={() => setTime(index)} className={AppState.greentick[index] ? "clock2" : "clock"}>&#128337;</span><span className={AppState.greentick[index] ? "greenTick1" : "greenTick2"}>&#9989;</span></li><Calendar onClick={(e) => { submitToServer(e, index) }} item={d} style={AppState.vis[index] ? "calendar1" : "calendar2"} style2={AppState.greentick[index] ? "calendar2" : "calendar1"} submitStyle={AppState.greentick[index] ? "submitted" : "notsubmitted"} /></div>)
-  const items2 = props.user.overdue.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => overdueDone(i)} >&#9989;<span class="tooltiptext">Complete?</span></span></li>)
-  const items3 = props.user.log.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => dueDone(i)} >&#9989;<span class="tooltiptext">Complete?</span></span></li>)
+  const items2 = props.user.overdue.map((d, i) => <li className="row overdueitems" key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => overdueDone(i)} >&#9989;<span class="tooltiptext">Complete?</span></span></li>)
+  const items3 = props.user.log.map((d, i) => <li className="row listitems" key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => dueDone(i)} >&#9989;<span class="tooltiptext">Complete?</span></span></li>)
   
   return (
 
-    <div>
+    <div className="container">
       
-      <h1 id="box">Hello {props.user.username} <br></br>Your "To Do" List:</h1>
+      <h1 className='card border-primary mb-3'>Hello {props.user.username} <br></br>Your "To Do" List:</h1>
       
-      <div className="CssFlex">
-      <div id="overdue"><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
-      <div id="readyToPlan"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
+      <div className="row">
+      <div className='card text-center'><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
+      <div className="card text-center"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
       </div>
       <div id="textArea">
+      <div id="card"><ul>{items}</ul></div>
       <textarea
         onChange={(e) => handleChange(e)}
         value={AppState.userInput}
@@ -237,10 +239,10 @@ function MyToDoComp(props) {
         placeholder='Separate Tasks With Commas'
       />
       <br />
-      <button id="createList" onClick={() => handleSubmit()}>Create List</button>
-      <button id="clearList" onClick={() => clear()}>Clear List</button>
+      <button className="btn btn-primary" onClick={() => handleSubmit()}>Create List</button>
+      <button className="btn btn-danger" onClick={() => clear()}>Clear List</button>
       </div>
-      <div id="card"><ul>{items}</ul></div>
+      
 
 
 
