@@ -224,9 +224,9 @@ function MyToDoComp(props) {
 
     <div className="container">
       
-      <h1 className='card border-primary mb-3'>Hello {props.user.username} <br></br>Your "To Do" List:</h1>
+      <h1 className='card text-center border-primary mb-3'>Hello {props.user.username} here's your "To Do" List:</h1>
       
-      <div className="row">
+      <div>
       <div className='card text-center'><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
       <div className="card text-center"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
       </div>
