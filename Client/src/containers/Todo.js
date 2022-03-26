@@ -243,7 +243,9 @@ function MyToDoComp(props) {
   return (
 
     <div>
+      
       <h1 id="box">Hello {props.user.username} <br></br>Your "To Do" List:</h1>
+      
       <div className="CssFlex">
       <div id="overdue"><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
       <div id="readyToPlan"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
