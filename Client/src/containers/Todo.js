@@ -213,6 +213,11 @@ function MyToDoComp(props) {
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
 
   }
+  function addItems(){
+    let ta=document.getElementById('textArea')
+    console.log(ta)
+    ta.classList.toggle('active')
+  }
 
 
   //console.log(props.user)
@@ -230,14 +235,17 @@ function MyToDoComp(props) {
       <div className='card text-center'><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
       <div className="card text-center"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
       </div>
+      <button onClick={()=>addItems()}>+ Items</button>
       <div id="textArea">
       <div id="card"><ul>{items}</ul></div>
+      <div>
       <textarea
         onChange={(e) => handleChange(e)}
         value={AppState.userInput}
 
         placeholder='Separate Tasks With Commas'
       />
+      </div>
       <br />
       <button className="btn btn-primary" onClick={() => handleSubmit()}>Create List</button>
       <button className="btn btn-danger" onClick={() => clear()}>Clear List</button>

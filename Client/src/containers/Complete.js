@@ -23,7 +23,7 @@ function Complete(props){
 
 
 
-    const items2 = props.user.done.map((d, i) => <li className="completedList" key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeDone(i)} >X<span class="tooltiptext">Delete?</span></span></li>)
+    const items2 = props.user.done.map((d, i) => <li className="row" key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeDone(i)} >X<span class="tooltiptext">Delete?</span></span></li>)
     return (
       <div className='card border-primary mb-3'>
         <h1 className='text-center'>Your completed tasks:</h1>
