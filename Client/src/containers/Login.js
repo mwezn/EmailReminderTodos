@@ -1,5 +1,6 @@
 import {React, useState, useContext} from "react";
 import { AuthContext } from '../App'
+import './login.css'
 
 
 export default function Login() {
@@ -58,7 +59,7 @@ export default function Login() {
 
 
   return (
-    <div>
+    <div className="login">
     <div className="loginCard">
     <form id="loginCardItems" className="form-control" onSubmit={(e)=>handleSubmit(e)} method="post">
         <label for="email">Email:</label><br></br>

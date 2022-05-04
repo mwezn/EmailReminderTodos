@@ -1,9 +1,6 @@
 require('dotenv').config();
 var nodemailer = require('nodemailer');
 
-
-
-
 let sender= process.env.EMAIL
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -26,7 +23,7 @@ let data= JSON.stringify({Testing: 'Testing my OAuth authentication'})
 var mainOptions={
     from: sender,
     to: sender,
-    subject: 'Succesfully Registered ',
+    subject: 'Testing OAuth tokens',
     html: data,
 }
 transporter.sendMail(mainOptions,(err,info)=>{

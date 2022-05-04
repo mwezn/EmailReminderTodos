@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './login.css'
 
 
 
@@ -60,7 +61,7 @@ export default function Register() {
  
 
   return (
-    <div>
+    <div className="reg">
     <div id="loginCard">
     <form id="loginCardItems" className="form-control" onSubmit={(e)=>handleSubmit(e)}>
         <label for="email">Email:</label><br></br>

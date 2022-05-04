@@ -1,0 +1,12 @@
+div.login {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}
+div.reg {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}

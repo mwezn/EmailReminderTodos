@@ -59,7 +59,7 @@ function Calendar(props) {
     <label >Enter deadline:</label>
     <input type="date" id="start" onChange={(e) => handleDate(e)} defaultValue={dt} name="trip-start"
 
-      min="2020-01-01" max="2021-12-31"></input><TimePicker onChange={(e) => handleTime(e)} /><button id="setReminder" className={props.submitStyle} onClick={props.onClick} value={JSON.stringify(timeline)}>Set Reminder</button></div>)
+      min="2020-01-01" max="2099-12-31"></input><TimePicker onChange={(e) => handleTime(e)} /><button id="setReminder" className={props.submitStyle} onClick={props.onClick} value={JSON.stringify(timeline)}>Set Reminder</button></div>)
 
 }
 
