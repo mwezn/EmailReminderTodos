@@ -25,6 +25,11 @@ var transporter = nodemailer.createTransport({
       }
 });
 
+router.get('/users', async (req, res)=>{
+  const users= await User.find({});
+  res.json(users)
+})
+
 
 router.post('/updateCentralState', async (req, res)=>{
   let id=req.body.data['_id']

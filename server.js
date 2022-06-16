@@ -4,7 +4,6 @@ const app =express()
 const mongoose = require('mongoose')
 const routes = require('./routes') // includes the routes.js file
 const cors = require('cors') // includes cors module
-const User = require('./models/Emailschema')
 const path=require('path')
 const cronUpdate= require('./cron')
 
@@ -23,11 +22,6 @@ app.get("*", (req, res) => {
 mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
-/*app.use(express.static(path.join(__dirname, "Client", "public")))
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "Client", "public", "index.html"));
-});*/
 
 
 
