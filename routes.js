@@ -30,6 +30,15 @@ router.get('/users', async (req, res)=>{
   res.json(users)
 })
 
+router.delete('/:id', async (req, res)=>{
+  try {
+      const d = await User.findOneAndDelete({_id: req.params.id})
+      res.json(d)
+  } catch(err) {
+      res.status(500).json({err})
+  }
+})
+
 
 router.post('/updateCentralState', async (req, res)=>{
   let id=req.body.data['_id']
