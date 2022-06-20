@@ -30,7 +30,8 @@ function Navigate(props){
           }
        }
        await fetch(`/${id['_id']}`, options)
-       localStorage.clear()
+       localStorage.clear();
+       window.location.href='/remove';
  
    } catch (err) {
        console.warn(err);
@@ -45,7 +46,7 @@ function Navigate(props){
         <li className="navbar-brand"><a href="/" /*onClick={(e)=>e.preventDefault()}*/ >Home</a></li>
         <li className="navbar-brand"><a href="/completed">Complete</a></li>
         <li className="navbar-brand"><a href="/logout" onClick={()=>dispatch({type: "LOGOUT"})}>Logout</a></li>
-        <li className="navbar-brand"><a href="/" onClick={(e)=>removeAccount(e)}>Delete account</a></li>
+        <li className="navbar-brand"><a href="/remove" onClick={(e)=>removeAccount(e)}>Delete account</a></li>
       </ul>
     </nav>):(
       <nav className='navbar navbar-light bg-light'>

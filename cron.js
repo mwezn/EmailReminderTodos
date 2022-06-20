@@ -41,21 +41,21 @@ function performUpdate(){
       for(let i=0;i<l;i++){
         
         let f=d[i].log
-        let Id= d[i]['_id']
-        let res=f.filter(z=>z.date<T.slice(0,10))
-        let res2=f.filter(z=>z.date==T.slice(0,10))
-        let pastTime=res2.filter(z=>z.time<GMT)
-        let now=res2.filter(z=>z.time==GMT)
-        console.log(Id,res,res2)
+        let email= d[i]['email']
+        let pastDate=f.filter(z=>z.date<T.slice(0,10))
+        let todays=f.filter(z=>z.date==T.slice(0,10))
+        let pastTime=todays.filter(z=>z.time<GMT)
+        let now=todays.filter(z=>z.time==GMT)
+        console.log(email)
 
         const update = {
           //$pullAll: {overdue:[[]]},
           $pull: {
            log: {
-             $in: res
+             $in: pastDate
                 }
                 },
-           $addToSet:{overdue:{ $each: res}}
+           $addToSet:{overdue:{ $each: pastDate}}
           }
           const update2 ={
             //$pullAll: {overdue:[[]]},
@@ -68,13 +68,13 @@ function performUpdate(){
 
           }
         
-        User.findOneAndUpdate(Id,update,{new: false}, (err,user)=>{
-          if(err) console.log(err)
-          console.log("User:" +user)
+        User.findOneAndUpdate(email,update,{new: false}, (err,user)=>{
+          /*if(err) console.log(err)
+          console.log("User:" +user)*/
         })
-        User.findOneAndUpdate(Id,update2,{new: false}, (err,user)=>{
-          if(err) console.log(err)
-          console.log("User:"+ user)
+        User.findOneAndUpdate(email,update2,{new: false}, (err,user)=>{
+          /*if(err) console.log(err)
+          console.log("User:"+ user)*/
         })
         
         if(now.length!==0){
@@ -108,5 +108,4 @@ function performUpdate(){
 })
 }
 module.exports.performUpdate= performUpdate;
-performUpdate()
 //app.listen(3002);

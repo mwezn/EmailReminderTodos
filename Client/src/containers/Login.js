@@ -5,7 +5,7 @@ import './login.css'
 
 export default function Login() {
   
-  const [loginCredentials, setParams] = useState({email: "", password: "", emailExist:null, passCorrect: null});
+  const [loginCredentials, setParams] = useState({email: "", password: "", emailExist:null, passCorrect: null,error:null});
   const  { dispatch } = useContext(AuthContext);
   
 
@@ -32,10 +32,17 @@ export default function Login() {
         const newObj={emailExist: false}
         setParams(oldObj=>{return {...oldObj, ...newObj}})
       }
+      else if(res.status===500){
+        const newObj={error: true}
+        setParams(oldObj=>{return {...oldObj, ...newObj}})
+      }
       return res.json()
     })
-    .then(resJSON=>dispatch({type: "LOGIN", payload: resJSON}))
-    .then(()=>console.log(localStorage.getItem('token')+"HAHA GOTIT"))
+    .then(resJSON=>{
+      console.log(resJSON)
+      dispatch({type: "LOGIN", payload: resJSON})
+    })
+
   
   }
   
@@ -68,7 +75,7 @@ export default function Login() {
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)} required></input><br></br>
         <button className="btn btn-primary">Login</button>
     </form> 
-    <div><h1>{loginCredentials.emailExist===false?<p className="emailTaken">Email doesn't exist</p>:loginCredentials.passCorrect===false?<p className="emailTaken">Wrong Password</p>:null}</h1></div>
+    <div><h1>{loginCredentials.emailExist===false?<p className="emailTaken">Email doesn't exist</p>:loginCredentials.passCorrect===false?<p className="emailTaken">Wrong Password</p>:loginCredentials.error===true?<p className="emailTaken">Server error</p>:null}</h1></div>
     </div>
     </div>
     
