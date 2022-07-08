@@ -32,10 +32,6 @@ export default function Login() {
         const newObj={emailExist: false}
         setParams(oldObj=>{return {...oldObj, ...newObj}})
       }
-      else if(res.status===500){
-        const newObj={error: true}
-        setParams(oldObj=>{return {...oldObj, ...newObj}})
-      }
       return res.json()
     })
     .then(resJSON=>{
