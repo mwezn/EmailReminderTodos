@@ -26,7 +26,7 @@ var transporter = nodemailer.createTransport({
 
 
  
-
+let email;
 // The following function separates users scheduled tasks from the overdue ones!
 function performUpdate(){
   cron.schedule('*/30 * * * * *', ()=>{
@@ -41,25 +41,15 @@ function performUpdate(){
       for(let i=0;i<l;i++){
         
         let f=d[i].log
-        let email= d[i]['email']
+        email= d[i]['email']
         let pastDate=f.filter(z=>z.date<T.slice(0,10))
         let todays=f.filter(z=>z.date==T.slice(0,10))
         let pastTime=todays.filter(z=>z.time<GMT)
         let now=todays.filter(z=>z.time==GMT)
         console.log(email)
 
-        const update = {
-          //$pullAll: {overdue:[[]]},
-          $pull: {
-           log: {
-             $in: pastDate
-                }
-                },
-           $addToSet:{overdue:{ $each: pastDate}}
-          }
-          const update2 ={
-            //$pullAll: {overdue:[[]]},
-          $pull: {
+        const update2 ={
+          $pullAll: {
            log: {
              $in: pastTime
                 }
@@ -67,14 +57,10 @@ function performUpdate(){
            $addToSet:{overdue:{ $each: pastTime}}
 
           }
-        
-        User.findOneAndUpdate(email,update,{new: false}, (err,user)=>{
-          /*if(err) console.log(err)
-          console.log("User:" +user)*/
-        })
-        User.findOneAndUpdate(email,update2,{new: false}, (err,user)=>{
-          /*if(err) console.log(err)
-          console.log("User:"+ user)*/
+
+        let options = { }
+        User.findOneAndUpdate(email,update2,{new: true}, (err,user)=>{
+          console.log(user)
         })
         
         if(now.length!==0){
