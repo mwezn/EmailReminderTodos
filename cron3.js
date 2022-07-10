@@ -5,7 +5,9 @@ var nodemailer=require('nodemailer')
 const User = require('./models/Emailschema')
 const ejs= require('ejs')
 
-
+const mongoose = require('mongoose')
+mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+const db = mongoose.connection
 
 let sender= process.env.EMAIL
 var transporter = nodemailer.createTransport({
@@ -25,7 +27,6 @@ var transporter = nodemailer.createTransport({
 
 
 function mailTasks(elem,tasks){
-
   ejs.renderFile(__dirname + "/views/ReminderEmail.ejs", {userName: elem.username, mongoDB: tasks},
   (err,data)=>{
   if (err) console.log(err)
@@ -42,8 +43,10 @@ function mailTasks(elem,tasks){
 })
 }
 
-
-cron.schedule('*/10 * * * * *', ()=>{
+db.on('error', (error) => console.error(error))
+db.once('open', () => {
+    console.log('database connected')
+    cron.schedule('*/10 * * * * *', ()=>{
     let time=new Date();
     let T=time.toISOString();
     let GMT= time.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit',hour12:false})
@@ -64,9 +67,14 @@ cron.schedule('*/10 * * * * *', ()=>{
             return d 
         })
         .then(d=>User.bulkSave(d))
-        
-        
-    
+    })
 })
+
+
+
+
+
+
+
 
 
