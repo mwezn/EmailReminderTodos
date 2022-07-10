@@ -2,10 +2,13 @@
   "name": "todos",
   "version": "1.0.0",
   "description": "This is my first fullstack MERN app. It links together two other repos on here MongoBackend & ToDoList.  Its currently live & hosted on an AWS Ubuntu 18.04 EC2 (Elastic cloud compute) server at:",
+  "engines": { "node": "14.x", "npm": "6.14.4" },
   "main": "server.js",
   "scripts": {
+    "preinstall": "npm config set package-lock false",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm install"
   },
   "repository": {
     "type": "git",
@@ -21,7 +24,7 @@
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.8",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.6",
