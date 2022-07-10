@@ -91,8 +91,9 @@ function performUpdate(){
         })
         .then(d=>{
           d.forEach(elem=>{
-            elem.overdue = elem.log.filter(function(v) { return v.date==T.slice(0,10) && v.time < GMT })
-            elem.log=elem.log.filter(v=>{return v.date!==T.slice(0,10) || v.date==T.slice(0,10) && v.time>GMT})
+            let overDueItems=elem.log.filter(function(v) { return v.date==T.slice(0,10) && v.time < GMT })
+            elem.overdue.push(...overDueItems)
+            elem.log=elem.log.filter(v=>{return v.date!==T.slice(0,10) || v.time>=GMT  })
           })
             return d 
         })
