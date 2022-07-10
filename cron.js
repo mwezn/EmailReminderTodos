@@ -1,8 +1,6 @@
 require('dotenv').config();
 var cron =require('node-cron');
-var express=require('express')
 var nodemailer=require('nodemailer')
-let app=express();
 const User = require('./models/Emailschema')
 const ejs= require('ejs')
 

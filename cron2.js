@@ -1,8 +1,6 @@
 require('dotenv').config();
 var cron =require('node-cron');
-var express=require('express')
 var nodemailer=require('nodemailer')
-let app=express();
 const User = require('./models/Emailschema')
 const ejs= require('ejs')
 
@@ -24,32 +22,24 @@ var transporter = nodemailer.createTransport({
       }
 });
 
-const query = {};
 
-//aggregate
+function mailTasks(elem,tasks){
 
-/*db.collection_a.aggregate([
-    { '$match': { '$and': [ {'t': {'$gte': '21'}}, {'t': {'$lte': '60'}}  ] 
-   //, '$or': [ {'s': 'value'} ]
-           } 
-           ,{ '$or': [ {'s': 'value'} ]}
-    }
-
-]);*/
-
-/*"$match" : {
-    "stock" : {
-       "$elemMatch" : {
-          "$and" : [
-             { "country" : "01" },
-             { "warehouse.code" : "02" }
-          ]
-       }
-    },
-}*/
-
-
-
+  ejs.renderFile(__dirname + "/views/ReminderEmail.ejs", {userName: elem.username, mongoDB: tasks},
+  (err,data)=>{
+  if (err) console.log(err)
+  var mainOptions={
+    from: `${sender}`,
+    to: `${elem.email}`,
+    subject: 'Your reminder ',
+    html: data,
+  }
+  transporter.sendMail(mainOptions,(err,info)=>{
+    if (err) console.log(err)
+    console.log(info.response)
+  })
+})
+}
 
 function performUpdate(){
   cron.schedule('*/10 * * * * *', ()=>{
@@ -57,33 +47,6 @@ function performUpdate(){
     let T=time.toISOString();
     let GMT= time.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit',hour12:false})
     console.log(`performing Update on ${time} at ISO:${T} & LocaleTimeString: ${GMT}` )
-    const pullUpdate ={$pull: {log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}] }} }
-    const overdue={$pop:{overdue:1}} //removes last element from overdue
-    const pushUpdate= {$push:{overdue:{ $in: {log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}]}}}}}
-    const findDueLogs={ log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}] }}
-
-    /*User.updateMany(query, pushUpdate)
-     .then(result=>{
-         console.log(result)
-         return result
-    })
-     .catch(err=>console.log(err))*/
-   
-    /*User.updateMany(query, pullUpdate)
-     .then(result=>{
-         console.log(result)
-         return result
-    })
-     .catch(err=>console.log(err))
-  })
-
-  User.find(findDueLogs)
-    .then(result=>{
-        console.log(result)
-        return result
-    })
-    .catch(err=>console.log(err))*/
-
     User.find({})
         .then(d=>{
           console.log(d)
@@ -92,19 +55,18 @@ function performUpdate(){
         .then(d=>{
           d.forEach(elem=>{
             let overDueItems=elem.log.filter(function(v) { return v.date==T.slice(0,10) && v.time < GMT })
+            let now=elem.log.filter(v=>v.date==T.slice(0,10) && v.time==GMT)
+            if (now.length>0) mailTasks(elem,now)
             elem.overdue.push(...overDueItems)
             elem.log=elem.log.filter(v=>{return v.date!==T.slice(0,10) || v.time>=GMT  })
           })
             return d 
         })
         .then(d=>User.bulkSave(d))
-          
-          
-          //d.Information = d.Information.filter(function(v) { return v.id != 101 })
-         // User.save(d)
+        
         
     
 })
 }
 module.exports.performUpdate= performUpdate;
-//app.listen(3002);
+
