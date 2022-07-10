@@ -37,24 +37,72 @@ const query = {};
 
 ]);*/
 
+/*"$match" : {
+    "stock" : {
+       "$elemMatch" : {
+          "$and" : [
+             { "country" : "01" },
+             { "warehouse.code" : "02" }
+          ]
+       }
+    },
+}*/
+
 
 
 
 function performUpdate(){
-  cron.schedule('*/30 * * * * *', ()=>{
+  cron.schedule('*/10 * * * * *', ()=>{
     let time=new Date();
     let T=time.toISOString();
     let GMT= time.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit',hour12:false})
     console.log(`performing Update on ${time} at ISO:${T} & LocaleTimeString: ${GMT}` )
-    const update2 ={ $pull: { log: { date: {$eq: T.slice(0,10), time: {$lt: GMT}} }} }
-    const customUpdate ={ $pull: { log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}] }} } 
-    User.updateMany(query, customUpdate)
+    const pullUpdate ={$pull: {log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}] }} }
+    const overdue={$pop:{overdue:1}} //removes last element from overdue
+    const pushUpdate= {$push:{overdue:{ $in: {log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}]}}}}}
+    const findDueLogs={ log: {$and:[ {date: {$eq:T.slice(0,10)}}, {time: {$lt: GMT}}] }}
+
+    /*User.updateMany(query, pushUpdate)
+     .then(result=>{
+         console.log(result)
+         return result
+    })
+     .catch(err=>console.log(err))*/
+   
+    /*User.updateMany(query, pullUpdate)
      .then(result=>{
          console.log(result)
          return result
     })
      .catch(err=>console.log(err))
+  })
 
+  User.find(findDueLogs)
+    .then(result=>{
+        console.log(result)
+        return result
+    })
+    .catch(err=>console.log(err))*/
+
+    User.find({})
+        .then(d=>{
+          console.log(d)
+          return d
+        })
+        .then(d=>{
+          d.forEach(elem=>{
+            elem.overdue = elem.log.filter(function(v) { return v.date==T.slice(0,10) && v.time < GMT })
+            elem.log=elem.log.filter(v=>{return v.date!==T.slice(0,10) || v.date==T.slice(0,10) && v.time>GMT})
+          })
+            return d 
+        })
+        .then(d=>User.bulkSave(d))
+          
+          
+          //d.Information = d.Information.filter(function(v) { return v.id != 101 })
+         // User.save(d)
+        
+    
 })
 }
 module.exports.performUpdate= performUpdate;
