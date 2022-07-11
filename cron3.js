@@ -46,7 +46,7 @@ function mailTasks(elem,tasks){
 db.on('error', (error) => console.error(error))
 db.once('open', () => {
     console.log('database connected')
-    cron.schedule('*/10 * * * * *', ()=>{
+    cron.schedule('*/30 * * * * *', ()=>{
     let time=new Date();
     let T=time.toISOString();
     let GMT= time.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit',hour12:false})
