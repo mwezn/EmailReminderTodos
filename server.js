@@ -29,7 +29,7 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => {
     console.log('database connected')
-    //cron.performUpdate()
+    cron.performUpdate()
     app.listen(process.env.PORT|| 8080,()=>{
         console.log("The API is running on Port:" + process.env.PORT || 8080)
     })
