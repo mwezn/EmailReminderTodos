@@ -6,6 +6,7 @@ const routes = require('./routes') // includes the routes.js file
 const cors = require('cors') // includes cors module
 const path=require('path')
 const cron =require('./cron2')
+const cron2=require('./cron4')
 
 app.use(cors()) // We're telling express to use CORS
 app.use(express.json()) // we need to tell server to use json as well
@@ -17,12 +18,13 @@ app.use(express.static(path.join(__dirname, "Client", "build")))
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "Client", "build", "index.html"));
 });
+
 mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => {
     console.log('database connected')
-    //cron.performUpdate()
+    setInterval(()=>cron2.performUpdate(), 10000)
     app.listen(process.env.PORT|| 8080,()=>{
         console.log("The API is running on Port:" + process.env.PORT || 8080)
     })
