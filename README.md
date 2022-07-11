@@ -52,3 +52,6 @@ https://todoemailer.herokuapp.com/register
   - I could refactor this code without using Mongoose
   - Add Jest unit & API tests
   - Currently Rewriting an identical backend in Docker
+  - Improve CSS/ color scheme
+  - Finally would like to rewrite this in React-Native
+  so that it could be deployed on Android/iOS phones
