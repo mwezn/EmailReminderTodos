@@ -6,7 +6,7 @@ const routes = require('./routes') // includes the routes.js file
 const cors = require('cors') // includes cors module
 const path=require('path')
 const cron =require('./cron2')
-const cron2=require('./cron4')
+
 
 app.use(cors()) // We're telling express to use CORS
 app.use(express.json()) // we need to tell server to use json as well
@@ -24,7 +24,6 @@ const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => {
     console.log('database connected')
-    setInterval(()=>cron2.performUpdate(), 10000)
     app.listen(process.env.PORT|| 8080,()=>{
         console.log("The API is running on Port:" + process.env.PORT || 8080)
     })
