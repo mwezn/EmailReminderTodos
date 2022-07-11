@@ -48,3 +48,7 @@ https://todoemailer.herokuapp.com/register
  - Issues deploying
  - Timezone mismatch between frontend & backend code
 
+## Future improvements 
+  - I could refactor this code without using Mongoose
+  - Add Jest unit & API tests
+  - Currently Rewriting an identical backend in Docker
