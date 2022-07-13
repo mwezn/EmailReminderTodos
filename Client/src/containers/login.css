@@ -10,3 +10,11 @@ div.reg {
     justify-content: center;
     padding-top: 100px;
 }
+
+#noacc {
+    display:block;
+    position:relative;
+    color:black;
+    left:30px;
+
+}

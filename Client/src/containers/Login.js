@@ -70,7 +70,8 @@ export default function Login() {
         <label for="pass">Password:</label><br></br>
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)} required></input><br></br>
         <button className="btn btn-primary">Login</button>
-    </form> 
+    </form>
+    <div><a id="noacc" href="/register"> Don't have an account?</a></div>  
     <div><h1>{loginCredentials.emailExist===false?<p className="emailTaken">Email doesn't exist</p>:loginCredentials.passCorrect===false?<p className="emailTaken">Wrong Password</p>:loginCredentials.error===true?<p className="emailTaken">Server error</p>:null}</h1></div>
     </div>
     </div>
