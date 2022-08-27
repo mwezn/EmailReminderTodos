@@ -68,7 +68,7 @@ export default function Login() {
         <label for="email">Email:</label><br></br>
         <input type="email" name="email" placeholder="Enter Email" onChange={(e)=>enterEmail(e)} required></input><br></br>
         <label for="pass">Password:</label><br></br>
-        <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)} required></input><br></br>
+        <input type="password" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)} required></input><br></br>
         <button className="btn btn-primary">Login</button>
     </form>
     <div><a id="noacc" href="/register"> Don't have an account?</a></div>  
