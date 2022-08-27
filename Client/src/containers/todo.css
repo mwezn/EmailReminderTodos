@@ -31,3 +31,46 @@
     opacity:1;
 
 }
+
+.close {
+    color: red;
+}
+
+.close .tooltiptext{
+  visibility: hidden;
+  width: 100px;
+  height:100px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 2;
+}
+.close:hover .tooltiptext{
+    visibility: visible;
+}
+
+.done {
+    display: inline;
+    position: absolute;
+    right:10vw;
+}
+
+.done .tooltiptext{
+    visibility: hidden;
+    width: 100px;
+    height:100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 2;
+}
+
+.done:hover .tooltiptext{
+    visibility: visible;
+}
