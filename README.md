@@ -17,6 +17,10 @@ https://todoemailer.herokuapp.com/register
 - Challenges
 
 
+## Heroku (git branch) updates
+
+- git push heroku heroku:main
+
 # Purpose of my app
 - Is to allow users to keep track of their todos via email reminders
 - The basic functionality is now working, with full CRUD functionality
