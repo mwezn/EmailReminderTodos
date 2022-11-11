@@ -4,6 +4,7 @@ import MyToDoComp from './containers/Todo'
 import Navigate from './containers/NavBar'
 import Register from './containers/Register'
 import Complete from './containers/Complete'
+import Admin from './containers/Admin'
 
 
 
@@ -77,6 +78,14 @@ function MyRoutes(props){
     }
     else if(window.location.pathname==="/remove"){
       return <h1>Account deleted</h1>
+    }
+    else if(window.location.pathname==="/admin/users"){
+      if(props.user){
+        return <Admin></Admin>
+      }
+      else {
+        return <h1>Youre not authorised to view this page</h1>
+      }
     }
     else{
       return <h1>404 Not Found!</h1>
