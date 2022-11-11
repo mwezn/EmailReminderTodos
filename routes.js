@@ -25,9 +25,11 @@ var transporter = nodemailer.createTransport({
       }
 });
 
-router.get('/users', async (req, res)=>{
+router.get('/admin/users/authed', async (req, res)=>{
   const users= await User.find({});
+  //Should only allow access if admin is logged in
   res.json(users)
+  
 })
 
 router.delete('/:id', async (req, res)=>{
