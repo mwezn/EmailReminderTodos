@@ -80,7 +80,7 @@ function MyRoutes(props){
       return <h1>Account deleted</h1>
     }
     else if(window.location.pathname==="/admin/users"){
-      if(props.user){
+      if(props.user && props.user.email==='m.w.g.nelson@gmail.com'){
         return <Admin></Admin>
       }
       else {
