@@ -5,6 +5,7 @@ import Navigate from './containers/NavBar'
 import Register from './containers/Register'
 import Complete from './containers/Complete'
 import Admin from './containers/Admin'
+import Logout from './containers/Logout'
 
 
 
@@ -74,7 +75,7 @@ function MyRoutes(props){
       return <Login />
     }
     else if(window.location.pathname==="/logout"){
-      return <h1>You've Logged Out</h1> //Will style these pages
+      return <Logout /> //Will style these pages
     }
     else if(window.location.pathname==="/remove"){
       return <h1>Account deleted</h1>
