@@ -1,5 +1,6 @@
 require('dotenv').config();
 var nodemailer = require('nodemailer');
+const ejs= require('ejs')
 
 let sender= process.env.EMAIL
 var transporter = nodemailer.createTransport({
@@ -18,15 +19,27 @@ var transporter = nodemailer.createTransport({
       }
 });
 
-let data= JSON.stringify({Testing: 'Testing my OAuth authentication'})
 
-var mainOptions={
-    from: sender,
-    to: sender,
-    subject: 'Testing OAuth tokens',
-    html: data,
-}
-transporter.sendMail(mainOptions,(err,info)=>{
+
+
+
+
+function mailTasks(){
+  ejs.renderFile(__dirname + "/views/TestEmail.ejs", {userName: 'mikey', mongoDB: ['keep going!', 'never give up']},
+  (err,data)=>{
+
+
+    var mainOptions={
+      from: sender,
+      to: sender,
+      subject: 'Testing OAuth tokens',
+      html: data,
+  }
+  transporter.sendMail(mainOptions,(err,info)=>{
     if (err) console.log(err)
     console.log(info.response)
   })
+})
+}
+
+mailTasks();

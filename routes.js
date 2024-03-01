@@ -139,6 +139,11 @@ router.post('/addTodo', async (req,res,done)=>{
 })*/
 
 
+
+//testing below route with CURL command 
+// curl -X POST -d '{"email": "m.w.g.nelson@gmail.com", "password": "123"}' -H "Content-Type: application/json" localhost:8080/login
+
+
 router.post('/login', async (req, res) =>{
 
     const email =req.body.data.email
